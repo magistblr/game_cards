@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useDispatch, useSelector } from 'react-redux';
+import s from './App.module.css';
+import { Card } from './components/Card/Card';
+import { ChangeClickCard } from './redux/actions';
+import { CardsStateType } from './redux/cardsReducer';
+import { IGlobalState } from './redux/state';
 
-function App() {
+export function App() {
+
+  const dispatch = useDispatch()
+  const cards = useSelector<IGlobalState, CardsStateType>(state => state.cards)
+
+  const openCard = (id: number, value: boolean) => {
+    dispatch(ChangeClickCard(id, value))
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={s.container}>
+        <div className={s.cards}>
+          {cards.map(card => <Card callback={openCard} id={card.id} img={card.img} click={card.click} key={card.id}></Card>)}
+        </div>
     </div>
   );
 }
 
-export default App;
