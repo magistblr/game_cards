@@ -1,8 +1,21 @@
-.card{
+.wrapper{
   width: 100px;
   height: 100px;
   cursor: pointer;
-  border: 1px solid
+  border: 1px solid;
+}
+
+.card{
+  background-color: black;
+}
+
+/* .card_qa{
+  background: url('../../assets/qa.jpg')
+} */
+
+img{
+  width: 100px;
+  height: 100px;
 }
 
 
