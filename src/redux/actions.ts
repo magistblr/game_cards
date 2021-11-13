@@ -15,6 +15,9 @@ export const SetDefaultOpenedCards = () => ({ type: 'Card/SET_DEFAULT_OPENED_CAR
 export const SetOpenCards = (id: number) => ({ type: 'Card/SET_OPEN_CARDS', id} as const);
 export const SetCloseCards = (name: string) => ({ type: 'Card/SET_CLOSE_CARDS', name} as const);
 export const SetRestartCards = () => ({ type: 'Card/SET_RESTART'} as const);
+export const SetDisabledCards = (id: number, value: boolean) => ({ type: 'Card/SET_DISABLED_CARD', id, value} as const);
+export const SetEnabledAllCards = () => ({ type: 'Card/SET_ENABLED_ALL_CARD'} as const);
+export const SetDisabledAllCards = () => ({ type: 'Card/SET_DISABLED_ALL_CARD'} as const);
 
 export type CardsActionTypes =
         | ReturnType<typeof ChangeClickCard>
@@ -26,3 +29,6 @@ export type CardsActionTypes =
         | ReturnType<typeof SetOpenCards>
         | ReturnType<typeof SetCloseCards>
         | ReturnType<typeof SetRestartCards>
+        | ReturnType<typeof SetDisabledCards>
+        | ReturnType<typeof SetDisabledAllCards>
+        | ReturnType<typeof SetEnabledAllCards>

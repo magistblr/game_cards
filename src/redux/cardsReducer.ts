@@ -14,6 +14,7 @@ export type cardType = {
     name: string
     matched: boolean
     open: boolean
+    disabled: boolean
 }
 
 export type CardsType = cardType[]
@@ -32,6 +33,7 @@ const initialState: initialStateType = {
         name: "tomato",
         matched: false,
         open: false,
+        disabled: false
     },
     {
         id: 2,
@@ -39,6 +41,7 @@ const initialState: initialStateType = {
         name: "tomato",
         matched: false,
         open: false,
+        disabled: false
     },
     {
         id: 3,
@@ -46,6 +49,7 @@ const initialState: initialStateType = {
         name: "cucumber",
         matched: false,
         open: false,
+        disabled: false
     },
     {
         id: 4,
@@ -53,6 +57,7 @@ const initialState: initialStateType = {
         name: "cucumber",
         matched: false,
         open: false,
+        disabled: false
     },
     {
         id: 5,
@@ -60,6 +65,7 @@ const initialState: initialStateType = {
         name: "onion",
         matched: false,
         open: false,
+        disabled: false
     },
     {
         id: 6,
@@ -67,6 +73,7 @@ const initialState: initialStateType = {
         name: "onion",
         matched: false,
         open: false,
+        disabled: false
     },
     {
         id: 7,
@@ -74,6 +81,7 @@ const initialState: initialStateType = {
         name: "potatoe",
         matched: false,
         open: false,
+        disabled: false
     },
     {
         id: 8,
@@ -81,6 +89,7 @@ const initialState: initialStateType = {
         name: "potatoe",
         matched: false,
         open: false,
+        disabled: false
     },
     {
         id: 9,
@@ -88,6 +97,7 @@ const initialState: initialStateType = {
         name: "pepper",
         matched: false,
         open: false,
+        disabled: false
     },
     {
         id: 10,
@@ -95,6 +105,7 @@ const initialState: initialStateType = {
         name: "pepper",
         matched: false,
         open: false,
+        disabled: false
     },
     {
         id: 11,
@@ -102,6 +113,7 @@ const initialState: initialStateType = {
         name: "chilli",
         matched: false,
         open: false,
+        disabled: false
     },
     {
         id: 12,
@@ -109,6 +121,7 @@ const initialState: initialStateType = {
         name: "chilli",
         matched: false,
         open: false,
+        disabled: false
     },
     {
         id: 13,
@@ -116,6 +129,7 @@ const initialState: initialStateType = {
         name: "corn",
         matched: false,
         open: false,
+        disabled: false
     },
     {
         id: 14,
@@ -123,6 +137,7 @@ const initialState: initialStateType = {
         name: "corn",
         matched: false,
         open: false,
+        disabled: false
     },
     {
         id: 15,
@@ -130,6 +145,7 @@ const initialState: initialStateType = {
         name: "carrot",
         matched: false,
         open: false,
+        disabled: false
     },
     {
         id: 16,
@@ -137,10 +153,11 @@ const initialState: initialStateType = {
         name: "carrot",
         matched: false,
         open: false,
+        disabled: false
     }
     ],
     openedCards: [],
-    rounds: 0
+    rounds: 1
 };
 
 
@@ -162,7 +179,13 @@ export const cardsReducer = (state: initialStateType = initialState, action: Car
         case 'Card/SET_CLOSE_CARDS':
             return {...state, cards: state.cards.map(card => card.name === action.name ? {...card, open: false} : card)}
         case 'Card/SET_RESTART':
-            return {...state, cards: state.cards.map(card => card = {...card, matched: false, open: false}), openedCards: [], rounds: 0}
+            return {...state, cards: state.cards.map(card => card = {...card, matched: false, open: false}), openedCards: [], rounds: 1}
+        case 'Card/SET_DISABLED_CARD':
+            return {...state, cards: state.cards.map(card => card.id === action.id ? {...card, disabled: action.value} : card)}
+        case 'Card/SET_ENABLED_ALL_CARD':
+            return {...state, cards: state.cards.map( card => card = {...card, disabled: false})}
+        case 'Card/SET_DISABLED_ALL_CARD':
+            return {...state, cards: state.cards.map( card => card = {...card, disabled: true})}
         default:
             return state;
     }

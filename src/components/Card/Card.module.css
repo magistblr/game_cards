@@ -9,21 +9,21 @@
 
 
 .card{
-  transition: 0.5s;
+  transition: 0.2s;
 }
 
 .card_qa{
   width: 100px;
   height: 100px;
   opacity: 0;
-  transition: 0.5s;
+  transition: 0.2s;
 }
 
 
 img{
   width: 100px;
   height: 100px;
-  transition: 0.5s;
+  transition: 0.2s;
 }
 
 
