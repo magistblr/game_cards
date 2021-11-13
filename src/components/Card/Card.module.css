@@ -3,19 +3,32 @@
   height: 100px;
   cursor: pointer;
   border: 1px solid;
+  padding: 5px;
+  border-radius: 10px
 }
+
 
 .card{
-  background-color: black;
+  transition: 0.5s;
 }
 
-/* .card_qa{
-  background: url('../../assets/qa.jpg')
-} */
+.card_qa{
+  width: 100px;
+  height: 100px;
+  opacity: 0;
+  transition: 0.5s;
+}
+
 
 img{
   width: 100px;
   height: 100px;
+  transition: 0.5s;
 }
 
 
+
+.disabled{
+  pointer-events: none;
+  user-select: none;
+}

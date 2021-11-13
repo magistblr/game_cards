@@ -2,12 +2,12 @@ import React, { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import s from './App.module.css';
 import { Card } from './components/Card/Card';
-import { SetCloseCards, SetDefaultOpenedCards, SetMatchedCards, SetNewCards, SetOpenCards, SetOpenedCards } from './redux/actions';
+import { SetCloseCards, SetDefaultOpenedCards, SetMatchedCards, SetNewCards, SetOpenCards, SetOpenedCards, SetRestartCards, SetRoundsCards } from './redux/actions';
 import { CardsType } from './redux/cardsReducer';
 import { IGlobalState } from './redux/state';
 
 
-export function App() {
+export const App = React.memo( () => {
 
   const dispatch = useDispatch()
   const cards = useSelector<IGlobalState, CardsType>(state => state.cards.cards)
@@ -52,6 +52,7 @@ export function App() {
       if(openedCards[1] === openedCards[3]){
         dispatch(SetMatchedCards(openedCards[1]))
         dispatch(SetDefaultOpenedCards())
+        dispatch(SetRoundsCards())
       }else setTimeout(() => {
         dispatch(SetCloseCards(openedCards[1]))
         dispatch(SetCloseCards(openedCards[3]))
@@ -60,15 +61,20 @@ export function App() {
     }
   }, [openedCards])
 
+  const restartHandler = () => {
+    dispatch(SetNewCards(shuffle(cards)))
+    dispatch(SetRestartCards())
+  }
 
 
   return (
     <div className={s.container}>
         <div>Round: {rounds}</div>
         <div className={s.cards}>
-          {cards.map((card) => <Card open={card.open} id={card.id} name={card.name} flipCard={flipCard} img={card.img} key={card.id}></Card>)}
+          {cards.map((card) => <Card open={card.open} id={card.id} name={card.name} flipCard={flipCard} img={card.img} key={card.id} matched={card.matched}></Card>)}
         </div>
+        <button className={s.restart} onClick={restartHandler}>RESTART</button>
     </div>
   );
-}
+})
 

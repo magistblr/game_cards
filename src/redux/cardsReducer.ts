@@ -161,6 +161,8 @@ export const cardsReducer = (state: initialStateType = initialState, action: Car
             return {...state, cards: state.cards.map(card => card.id === action.id ? {...card, open: true} : card)}
         case 'Card/SET_CLOSE_CARDS':
             return {...state, cards: state.cards.map(card => card.name === action.name ? {...card, open: false} : card)}
+        case 'Card/SET_RESTART':
+            return {...state, cards: state.cards.map(card => card = {...card, matched: false, open: false}), openedCards: [], rounds: 0}
         default:
             return state;
     }
