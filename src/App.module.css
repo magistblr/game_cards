@@ -4,9 +4,13 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  /* background: url('./assets/bg.jpg'); */
+  background-color: rgb(145, 127, 51);
   background-repeat: no-repeat;
   background-size: cover
+}
+
+.round{
+  font-size: 25px;
 }
 
 

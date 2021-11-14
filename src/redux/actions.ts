@@ -1,13 +1,7 @@
 import { CardsType } from "./cardsReducer";
 
-// export enum ACTIONS_TYPE {
-//     CHANGE_CLICK_CARD = 'Card/CHANGE_CLICK_CARD',
-//     NEW_ARRAY_CARDS = 'Card/NEW_ARRAY_CARDS',
-// }
-
 
 export const SetNewCards = (array: CardsType) => ({ type: 'Card/NEW_ARRAY_CARDS', array} as const);
-export const ChangeClickCard = (id: number, value: boolean) => ({ type: 'Card/CHANGE_CLICK_CARD', id, value} as const);
 export const SetOpenedCards = (id:string, name: string) => ({ type: 'Card/SET_OPENED_CARDS', id, name} as const);
 export const SetRoundsCards = () => ({ type: 'Card/SET_ROUNDS'} as const);
 export const SetMatchedCards = (name: string) => ({ type: 'Card/SET_MATCHED', name} as const);
@@ -20,7 +14,6 @@ export const SetEnabledAllCards = () => ({ type: 'Card/SET_ENABLED_ALL_CARD'} as
 export const SetDisabledAllCards = () => ({ type: 'Card/SET_DISABLED_ALL_CARD'} as const);
 
 export type CardsActionTypes =
-        | ReturnType<typeof ChangeClickCard>
         | ReturnType<typeof SetNewCards>
         | ReturnType<typeof SetOpenedCards>
         | ReturnType<typeof SetRoundsCards>
