@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import white from '../../assets/white.jpg';
 import { cardType } from '../../redux/cardsReducer';
 import s from './Card.module.css';
