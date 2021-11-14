@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import s from './App.module.css';
 import { Card } from './components/Card/Card';
@@ -17,37 +17,22 @@ import {
 } from './redux/actions';
 import { CardsType } from './redux/cardsReducer';
 import { IGlobalState } from './redux/state';
+import { shuffle } from './utils/functionSort';
 
-export const App = React.memo(() => {
+export const App = () => {
   const dispatch = useDispatch();
   const cards = useSelector<IGlobalState, CardsType>((state) => state.cards.cards);
   const rounds = useSelector<IGlobalState, number>((state) => state.cards.rounds);
   const openedCards = useSelector<IGlobalState, string[]>((state) => state.cards.openedCards);
-  // console.log("render app");
 
   //sort cards
-  const shuffle = (array: CardsType) => {
-    let currentIndex = array.length,
-      temporaryValue,
-      randomIndex;
-
-    while (currentIndex !== 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-    return array;
-  };
   useEffect(() => {
     dispatch(SetNewCards(shuffle(cards)));
   }, []);
   //sort cards
 
 
-  //open true or false
+  //open card === true or false
   useEffect(() => {
     if (openedCards.length === 4) {
       dispatch(SetDisabledAllCards());
@@ -69,12 +54,12 @@ export const App = React.memo(() => {
 
 
   //callback
-  const flipCard = (identifate: string, name: string) => {
-    const id = Number(identifate);
+  const flipCard = (identificate: string, name: string) => {
+    const id = Number(identificate);
 
     if (openedCards.length < 3) {
       dispatch(SetOpenCards(Number(id)));
-      dispatch(SetOpenedCards(identifate, name));
+      dispatch(SetOpenedCards(identificate, name));
       dispatch(SetDisabledCards(id, true));
     } else {
       dispatch(SetDefaultOpenedCards());
@@ -101,4 +86,4 @@ export const App = React.memo(() => {
       </button>
     </div>
   );
-});
+};

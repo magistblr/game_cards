@@ -8,10 +8,11 @@ type CardType = {
   flipCard: (id: string, name: string) => void;
 };
 
-export const Card = React.memo((props: CardType) => {
-  const clickHandler = useCallback(() => {
+export const Card = (props: CardType) => {
+
+  const clickHandler = () => {
     props.flipCard(String(props.card.id), props.card.name);
-  }, [props.flipCard]);
+  };
 
   return (
     <div
@@ -24,4 +25,4 @@ export const Card = React.memo((props: CardType) => {
       </div>
     </div>
   );
-});
+};
