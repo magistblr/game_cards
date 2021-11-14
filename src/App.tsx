@@ -39,16 +39,17 @@ export const App = React.memo( () => {
   //работа с правильным/неправильным ответом
   useEffect(() => {
     if(openedCards.length === 4){
+      dispatch(SetDisabledAllCards())
       if(openedCards[1] === openedCards[3]){
-        dispatch(SetDisabledAllCards())   //доделать
         dispatch(SetDefaultOpenedCards())
         dispatch(SetRoundsCards())
         dispatch(SetMatchedCards(openedCards[1]))
         dispatch(SetMatchedCards(openedCards[3]))
+        dispatch(SetEnabledAllCards())
       }else setTimeout(() => {
         dispatch(SetCloseCards(openedCards[1]))
         dispatch(SetCloseCards(openedCards[3]))
-        dispatch(SetEnabledAllCards())    //доделать
+        dispatch(SetEnabledAllCards())
       }, 700);
     }
     dispatch(SetDefaultOpenedCards())
